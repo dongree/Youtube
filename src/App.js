@@ -1,32 +1,14 @@
-import { useEffect, useState } from 'react';
-import Header from './components/header';
-import List from './components/list';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Detail from './pages/Detail';
+import Home from './pages/Home';
+
+const router = createBrowserRouter([
+  { path: '/', element: <Home /> },
+  { path: '/detail/:id', element: <Detail /> },
+]);
 
 function App() {
-  const [data, setData] = useState([]);
-  const handleSearch = text => {
-    fetch(`videos/search.json`)
-      .then(res => res.json())
-      .then(data => {
-        setData(data.items);
-      });
-  };
-
-  useEffect(() => {
-    fetch(`videos/popular.json`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.items);
-        setData(data.items);
-      });
-  }, []);
-
-  return (
-    <>
-      <Header onSearch={handleSearch} />
-      <List items={data} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
