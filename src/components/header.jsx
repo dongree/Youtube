@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineSearch, AiFillYoutube } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header({ onSearch }) {
   const [text, setText] = useState('');
@@ -13,9 +14,16 @@ export default function Header({ onSearch }) {
     setText('');
   };
 
+  const navigate = useNavigate();
+
   return (
     <header className="flex justify-between items-center py-3 px-1 border-b-2 border-gray-400	">
-      <div className="flex items-center">
+      <div
+        className="flex items-center cursor-pointer"
+        onClick={() => {
+          navigate(`/`, {});
+        }}
+      >
         <button className="text-4xl text-red-600 mr-1">
           <AiFillYoutube />
         </button>
