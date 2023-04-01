@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineSearch, AiFillYoutube } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 
-export default function Header({ onSearch }) {
+export default function Header() {
   const [text, setText] = useState('');
   const handleChange = e => setText(e.target.value);
   const handleSubmit = e => {
@@ -10,8 +10,29 @@ export default function Header({ onSearch }) {
     if (text.trim().length === 0) {
       return;
     }
-    onSearch(text);
+    // onSearch(text);
     setText('');
+
+    fetch(`videos/search.json`)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data.items);
+        // setData(data.items);
+        // setIsSearchData(true);
+        navigate(`/videos`, {
+          state: {
+            data: data.items,
+          },
+        });
+      });
+
+    // fetch(
+    //   `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${text}&key=AIzaSyB3hVuIaqnPrAHbsLt7uaOTms6SawTM4hE`
+    // )
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     setData(data.items);
+    //   });
   };
 
   const navigate = useNavigate();

@@ -1,18 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Video({ info, data }) {
+export default function Video({ info, data, isSearchData }) {
   const navigate = useNavigate();
 
   return (
     <li
       className="basis-1/5 p-1 transition duration-150 ease-out hover:ease-in hover:scale-110	cursor-pointer	"
       onClick={e => {
-        console.log(e.currentTarget);
-        navigate(`/detail/${info.id}`, {
+        // console.log(e.currentTarget);
+        navigate(`/detail/${isSearchData ? info.id.videoId : info.id}`, {
           state: {
             info,
             data,
+            isSearchData,
           },
         });
       }}

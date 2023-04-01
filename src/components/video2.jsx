@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Video2({ info, data }) {
+export default function Video2({ info, data, isSearchData }) {
   const navigate = useNavigate();
 
   return (
@@ -9,10 +9,11 @@ export default function Video2({ info, data }) {
       className="p-1 cursor-pointer	flex w-full	"
       onClick={e => {
         console.log(e.currentTarget);
-        navigate(`/detail/${info.id}`, {
+        navigate(`/detail/${isSearchData ? info.id.videoId : info.id}`, {
           state: {
             info,
             data,
+            isSearchData,
           },
         });
       }}

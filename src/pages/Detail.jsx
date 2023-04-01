@@ -8,6 +8,7 @@ export default function Detail() {
   const location = useLocation();
   const info = location.state.info;
   const data = location.state.data;
+  const isSearchData = location.state.isSearchData;
 
   console.log(info);
 
@@ -15,8 +16,12 @@ export default function Detail() {
     <div>
       <Header />
       <div className="flex">
-        <VideoDetail info={info} />
-        <ListVertical items={data} id={info.id} />
+        <VideoDetail info={info} isSearchData={isSearchData} />
+        <ListVertical
+          items={data}
+          id={isSearchData ? info.id.videoId : info.id}
+          isSearchData={isSearchData}
+        />
       </div>
     </div>
   );

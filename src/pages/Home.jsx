@@ -5,13 +5,6 @@ import List from '../components/list';
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const handleSearch = text => {
-    fetch(`videos/search.json`)
-      .then(res => res.json())
-      .then(data => {
-        setData(data.items);
-      });
-  };
 
   useEffect(() => {
     fetch(`videos/popular.json`)
@@ -24,8 +17,8 @@ export default function Home() {
 
   return (
     <>
-      <Header onSearch={handleSearch} />
-      <List items={data} />
+      <Header />
+      <List items={data} isSearchData={false} />
     </>
   );
 }
