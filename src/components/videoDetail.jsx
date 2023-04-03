@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function VideoDetail({ info, isSearchData }) {
+export default function VideoDetail({ info }) {
   return (
     <div className="basis-2/3	">
       <iframe
@@ -9,7 +9,11 @@ export default function VideoDetail({ info, isSearchData }) {
         width="100%"
         height="500"
         src={`http://www.youtube-nocookie.com/embed/${
-          isSearchData ? info.id.videoId : info.id
+          info.id.kind
+            ? info.id.videoId
+              ? info.id.videoId
+              : info.id.channelId
+            : info.id
         }?enablejsapi=1`}
       ></iframe>
       <div className="text-lg text-white font-semibold ">

@@ -1,21 +1,29 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Video2({ info, data, isSearchData }) {
+export default function Video2({ info, data }) {
   const navigate = useNavigate();
 
   return (
     <li
       className="p-1 cursor-pointer	flex w-full	"
       onClick={e => {
-        console.log(e.currentTarget);
-        navigate(`/detail/${isSearchData ? info.id.videoId : info.id}`, {
-          state: {
-            info,
-            data,
-            isSearchData,
-          },
-        });
+        // console.log(e.currentTarget);
+        navigate(
+          `/detail/${
+            info.id.kind
+              ? info.id.videoId
+                ? info.id.videoId
+                : info.id.channelId
+              : info.id
+          }`,
+          {
+            state: {
+              info,
+              data,
+            },
+          }
+        );
       }}
     >
       <img

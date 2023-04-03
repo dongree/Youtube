@@ -1,7 +1,7 @@
 import React from 'react';
 import Video from './video';
 
-export default function List({ items, isSearchData }) {
+export default function List({ items }) {
   return (
     <ul className="flex flex-wrap">
       {items.map(item => {
@@ -9,9 +9,14 @@ export default function List({ items, isSearchData }) {
         return (
           <Video
             info={item}
-            key={isSearchData ? item.id.videoId : item.id}
+            key={
+              item.id.kind
+                ? item.id.videoId
+                  ? item.id.videoId
+                  : item.id.channelId
+                : item.id
+            }
             data={items}
-            isSearchData={isSearchData}
           />
         );
       })}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Video({ info, data, isSearchData }) {
+export default function Video({ info, data }) {
   const navigate = useNavigate();
 
   return (
@@ -9,13 +9,21 @@ export default function Video({ info, data, isSearchData }) {
       className="basis-1/5 p-1 transition duration-150 ease-out hover:ease-in hover:scale-110	cursor-pointer	"
       onClick={e => {
         // console.log(e.currentTarget);
-        navigate(`/detail/${isSearchData ? info.id.videoId : info.id}`, {
-          state: {
-            info,
-            data,
-            isSearchData,
-          },
-        });
+        navigate(
+          `/detail/${
+            info.id.kind
+              ? info.id.videoId
+                ? info.id.videoId
+                : info.id.channelId
+              : info.id
+          }`,
+          {
+            state: {
+              info,
+              data,
+            },
+          }
+        );
       }}
     >
       <img src={info.snippet.thumbnails.medium.url} alt={info.snippet.title} />

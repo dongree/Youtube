@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <List items={data} isSearchData={false} />
+      <List items={data} />
     </>
   );
 }
