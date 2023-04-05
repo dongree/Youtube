@@ -10,7 +10,7 @@ export default function Video({ info, data }) {
       onClick={e => {
         // console.log(e.currentTarget);
         navigate(
-          `/detail/${
+          `/videos/watch/${
             info.id.kind
               ? info.id.videoId
                 ? info.id.videoId

@@ -19,7 +19,7 @@ export default function Header() {
         // console.log(data.items);
         // setData(data.items);
         // setIsSearchData(true);
-        navigate(`/videos`, {
+        navigate(`/videos/${text}`, {
           state: {
             data: data.items,
           },

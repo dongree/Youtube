@@ -12,7 +12,6 @@ export default function Detail() {
 
   return (
     <div>
-      <Header />
       <div className="flex">
         <VideoDetail info={info} />
         <ListVertical

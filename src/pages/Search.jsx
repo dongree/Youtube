@@ -7,10 +7,5 @@ export default function Search() {
   const location = useLocation();
   const data = location.state.data;
 
-  return (
-    <div>
-      <Header />
-      <List items={data} />
-    </div>
-  );
+  return <List items={data} />;
 }

@@ -15,10 +15,5 @@ export default function Home() {
       });
   }, []);
 
-  return (
-    <>
-      <Header />
-      <List items={data} />
-    </>
-  );
+  return <List items={data} />;
 }
