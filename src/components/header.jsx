@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineSearch, AiFillYoutube } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Header() {
   const [text, setText] = useState('');
-  const handleChange = e => setText(e.target.value);
+  const { keyword } = useParams();
+  const navigate = useNavigate();
+
   const handleSubmit = e => {
     e.preventDefault();
-    if (text.trim().length === 0) {
-      return;
-    }
-    // onSearch(text);
-    setText('');
 
     fetch(`videos/search.json`)
       .then(res => res.json())
       .then(data => {
-        // console.log(data.items);
-        // setData(data.items);
-        // setIsSearchData(true);
         navigate(`/videos/${text}`, {
           state: {
             data: data.items,
@@ -31,11 +25,15 @@ export default function Header() {
     // )
     //   .then(res => res.json())
     //   .then(data => {
-    //     setData(data.items);
+    //     navigate(`/videos/${text}`, {
+    //       state: {
+    //         data: data.items,
+    //       },
+    //     });
     //   });
   };
 
-  const navigate = useNavigate();
+  useEffect(() => setText(keyword || ''), [keyword]);
 
   return (
     <header className="flex justify-between items-center py-3 px-1 border-b-2 border-gray-400	">
@@ -45,20 +43,21 @@ export default function Header() {
           navigate(`/`, {});
         }}
       >
-        <button className="text-4xl text-red-600 mr-1">
-          <AiFillYoutube />
-        </button>
-        <div className="text-3xl font-medium text-white">Youtube</div>
+        <AiFillYoutube className="text-4xl text-brand mr-1" />
+        <h1 className="text-3xl font-medium ">Youtube</h1>
       </div>
-      <form className="flex items-center w-3/5 mr-24" onSubmit={handleSubmit}>
+      <form
+        className="w-full flex justify-center mr-24"
+        onSubmit={handleSubmit}
+      >
         <input
-          className="w-full bg-black text-white h-10 px-3"
+          className="w-7/12 bg-black  h-10 px-3"
           type="text"
           placeholder="Search..."
-          onChange={handleChange}
+          onChange={e => setText(e.target.value)}
           value={text}
         ></input>
-        <button className="text-2xl bg-gray-400 h-10 w-10 flex justify-center items-center text-white ">
+        <button className="text-2xl bg-gray-400 px-3 ">
           <AiOutlineSearch />
         </button>
       </form>
