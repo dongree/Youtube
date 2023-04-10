@@ -9,28 +9,7 @@ export default function Header() {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    fetch(`videos/search.json`)
-      .then(res => res.json())
-      .then(data => {
-        navigate(`/videos/${text}`, {
-          state: {
-            data: data.items,
-          },
-        });
-      });
-
-    // fetch(
-    //   `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${text}&key=AIzaSyB3hVuIaqnPrAHbsLt7uaOTms6SawTM4hE`
-    // )
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     navigate(`/videos/${text}`, {
-    //       state: {
-    //         data: data.items,
-    //       },
-    //     });
-    //   });
+    navigate(`/videos/${text}`);
   };
 
   useEffect(() => setText(keyword || ''), [keyword]);
