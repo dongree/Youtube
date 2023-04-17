@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Detail from './pages/Detail';
-import Home from './pages/Home';
 import Videos from './pages/Videos';
 import NotFound from './pages/NotFound';
 
@@ -15,8 +14,8 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'videos', element: <Home /> },
+      { index: true, element: <Videos /> },
+      { path: 'videos', element: <Videos /> },
       { path: 'videos/:keyword', element: <Videos /> },
       { path: 'videos/watch/:id', element: <Detail /> },
     ],

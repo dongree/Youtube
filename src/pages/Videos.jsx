@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import List from '../components/list';
 import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../context/YoutubeApiContext';
+import VideoCard from '../components/VideoCard';
 
 export default function Search() {
   const { keyword } = useParams();
@@ -18,7 +18,13 @@ export default function Search() {
     <>
       {isLoading && <p>Loading...</p>}
       {error && <p>Something is wrong</p>}
-      <List items={videos} />
+      {videos && (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4">
+          {videos.map(item => {
+            return <VideoCard info={item} key={item.id} />;
+          })}
+        </ul>
+      )}
     </>
   );
 }
